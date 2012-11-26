@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <!--
+   #
+   # Licensed to the Apache Software Foundation (ASF) under one
+   # or more contributor license agreements.  See the NOTICE file
+   # distributed with this work for additional information
+   # regarding copyright ownership.  The ASF licenses this file
+   # to you under the Apache License, Version 2.0 (the
+   # "License"); you may not use this file except in compliance
+   # with the License.  You may obtain a copy of the License at
+   #
+   # http://www.apache.org/licenses/LICENSE-2.0
+   #
+   # Unless required by applicable law or agreed to in writing,
+   # software distributed under the License is distributed on an
+   # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   #  KIND, either express or implied.  See the License for the
+   # specific language governing permissions and limitations
+   # under the License.
+   #
+   -->
+  <head>
+    <title></title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="js/jquery.mobile.structure-1.2.0.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/jquery.mobile-1.0rc1.min.css" />
+          <!-- iPad/iPhone specific css below, add after your main css >
+           <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />
+           <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />
+           -->
+          <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+          <script type="text/javascript" charset="utf-8" src="cordova-1.8.1.js"></script>
+          <script src="js/jquery-1.7.2.min.js"></script>
+          <script src="js/jquery.mobile-1.2.0.min.js"></script>
+          <script src="js/camera.js"></script>
+          <script type="text/javascript">
+            
+            
+            // If you want to prevent dragging, uncomment this section
+            /*
+             function preventBehavior(e)
+             {
+             e.preventDefault();
+             };
+             document.addEventListener("touchmove", preventBehavior, false);
+             */
+            
+            /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+             see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+             for more details -jm */
+            /*
+             function handleOpenURL(url)
+             {
+             // TODO: do something with the url passed in.
+             }
+             */
+            
+            function onBodyLoad()
+            {
+              document.addEventListener("deviceready", onDeviceReady, false);
+            }
+            
+            /* When this function is called, Cordova has been initialized and is ready to roll */
+            /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+             see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+             for more details -jm */
+            function hideTest()
+            {
+              $('#testing').hide();
+            }
+            function hideLogin()
+            {
+              $('#login').hide();
+            }
+            function submitWatch()
+            {
+              $('#login').submit(function(me) {
+                          me.preventDefault();
+                          $.ajax({
+                              url: 'http://192.168.7.194/posty/index.php?at=ajax_login',
+                              data : { 'user' : $('[name=user]').val(), 'pass' : $('[name=pass]').val() },
+                              dataType: 'jsonp',
+                              jsonp: 'jsoncallback',
+                              timeout: 5000,
+                              success: function(data, status){
+                                 if(data.user!='nobody')
+                                 {
+                                    $.mobile.path.set("#home");
+                                    console.log("show test");
+                                 }
+                              console.log(data.user + " " + data.id);
+                              },
+                              error: function(){
+                              console.log('There was an error loading the data. login');
+                            }
+                          });
+                      });
+            }
+            function onDeviceReady()
+            {
+              // do your thing!
+              //navigator.notification.alert("Cordova is working");
+              //hideTest();
+              submitWatch();
+              cameraReady();
+              
+            }
+            
+            
+            
+            </script>
+          </head>
+  <body onload="onBodyLoad()">
+    <!--page template
+     
+     <div data-role="page" id="YOURID" data-theme="a">
+     <div data-role="header">
+     
+     </div>
+     
+     
+     <div data-role="content">
+     
+     </div>
+     
+     
+     <div data-role="footer">
+     
+     </div>
+     
+     </div>
+     
+     
+     -->
+    <!--login page-->
+    
+    <div data-role="page" id="loginpage" data-theme="a">
+      <div data-role="header">
+        <h1> Please Log in</h1>
+      </div>
+      
+      
+      <div data-role="content">
+        <form id="login">
+          <label for="user">User name:</label><input type="text" name="user" />
+          <label for="user">Password:</label><input type="password" name="pass" />
+          <input type="submit" value="Submit"/>
+        </form>
+      </div>
+      <div data-role="footer">
+        <p> You must log in to continue</p>
+      </div>
+      
+    </div>
+    
+    
+    <!--/login page-->
+    
+    <!-- page-->
+    <div data-role="page" id="home" data-theme="a">
+      <div data-role="header">
+        <h1>CacheDemPics</h1>
+      </div><!-- /header -->
+      
+      <div data-role="content">
+        <a href="#camera" data-theme="a" data-role="button" > New Game</a>
+        <a href="#continuegame" data-role="button">Continue Game</a>
+      </div><!-- /content -->
+      
+      <!--footer
+       <div data-role="footer">
+       <h4>Page Footer</h4>
+       </div> /footer -->
+      
+    </div>
+    <!--/page-->
+    <!--page-->
+    
+    <div data-role="page" data-theme="a" id="camera">
+      
+      <div data-role="header">
+        <h1>Camera</h1>
+      </div><!-- /header -->
+      
+      <div data-role="content">
+        
+        <button onclick="capturePhoto();">Capture Photo</button>
+        <button onclick="uploadtoserver('aaa', 'aaaaa');">uploadtoserver</button>
+        <!--
+         <button onclick="capturePhotoEdit();">Capture Editable Photo</button>
+         <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button>
+         <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button>
+         -->
+        <img style="display:none;width:60px;height:60px;" id="smallImage" alt="image" src="default.png" />
+        <img style="display:none;" id="largeImage" alt="image" src="default.png" />
+        <p>Camera Page content goes here.</p>
+      </div><!-- /content -->
+      
+      <div data-role="footer">
+        <div data-role="navbar" class="ui-navbar" role="navigation">
+          <ul class="ui-grid-a">
+            <li class="ui-block-a">
+              <a href="#home" data-role="button" data-theme="a"><span class="ui-btn-text">Home</span></a>
+            </li>
+            <li class="ui-block-b">
+              <a href="#camera" data-role="button" data-theme="a"><span class="ui-btn-text">Camera</span></a>
+            </li>
+          </ul>
+        </div>
+      </div> <!-- /footer -->
+    </div>
+    <!--/page-->
+    <!-- page continue game-->
+    <div data-role="page" id="continuegame" data-theme="a">
+      <div data-role="header">
+        <h1>Friends</h1>
+      </div>
+      <div data-role="content">
+        
+        
+        <div id="result">
+          
+        </div>
+      </div>
+      <div data-role="footer">
+        <div data-role="navbar" class="ui-navbar" role="navigation">
+          <ul class="ui-grid-a">
+            <li class="ui-block-a">
+              <a href="#home" data-role="button" data-theme="a"><span class="ui-btn-text">Home</span></a>
+            </li>
+            <li class="ui-block-b">
+              <a href="#camera" data-role="button" data-theme="a"><span class="ui-btn-text">Camera</span></a>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!--/page continue game-->
+    
+  </body>
+</html>
+
+
+

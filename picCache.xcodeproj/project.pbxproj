@@ -37,6 +37,7 @@
 		A6CFC905165C803500E94647 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CFC904165C803500E94647 /* AppDelegate.m */; };
 		A6CFC908165C803500E94647 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CFC907165C803500E94647 /* MainViewController.m */; };
 		A6CFC90A165C803500E94647 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CFC909165C803500E94647 /* MainViewController.xib */; };
+		A6CFC914165C80A500E94647 /* www in Resources */ = {isa = PBXBuildFile; fileRef = A6CFC913165C80A500E94647 /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		A6CFC909165C803500E94647 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainViewController.xib; path = Classes/MainViewController.xib; sourceTree = "<group>"; };
 		A6CFC90C165C803500E94647 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		A6CFC90D165C803500E94647 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
+		A6CFC913165C80A500E94647 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		A6CFC8AA165C803400E94647 = {
 			isa = PBXGroup;
 			children = (
+				A6CFC913165C80A500E94647 /* www */,
 				A6CFC8D6165C803400E94647 /* picCache */,
 				A6CFC8BB165C803400E94647 /* Frameworks */,
 				A6CFC8B9165C803400E94647 /* Products */,
@@ -328,6 +331,7 @@
 				A6CFC8FF165C803500E94647 /* Capture.bundle in Resources */,
 				A6CFC901165C803500E94647 /* Cordova.plist in Resources */,
 				A6CFC90A165C803500E94647 /* MainViewController.xib in Resources */,
+				A6CFC914165C80A500E94647 /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +488,7 @@
 					"CORDOVA_FRAMEWORK=1",
 				);
 				INFOPLIST_FILE = "picCache/picCache-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -513,6 +518,7 @@
 					"CORDOVA_FRAMEWORK=1",
 				);
 				INFOPLIST_FILE = "picCache/picCache-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
