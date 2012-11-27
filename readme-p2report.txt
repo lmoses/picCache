@@ -1,6 +1,6 @@
 Cache Dem Pics
 
-Thanks for downloading our game! Once you register your username and password(if you are grading it you can use the temporary user/pass of bob/dog, your
+Thanks for downloading our game! Once you register your username and password(if you are grading it you can use the temporary user/pass of bob/dog), your
 game will be available to play with any other registered users. You may also browse for your
 registered friend’s games that are available.
 
@@ -37,11 +37,12 @@ Database ajax connection, time spent 5-6 hours Luke Moses/Cameron Mills
 
 Phonegap Camera API, time spent 1-2 hours Luke Moses
 
-Photo Upload ~8 hours Luke Moses
+Photo Upload ~8 hours(many moons) Luke Moses
 
 To Be Done:
 
 Geolocation comparison and win/lose notifications
+user addition, database pulls
 
 Difficulties: Facebook login scrapped due to complexity, some of the original mockup
 screens were omitted or re-worked for easier coding/time constraint consideration.(text hint,
