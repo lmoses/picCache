@@ -81,7 +81,7 @@
               $('#login').submit(function(me) {
                           me.preventDefault();
                           $.ajax({
-                              url: 'http://192.168.10.105/posty/index.php?at=ajax_login',
+                              url: 'http://www.lmoses.com/posty/index.php?at=ajax_login',
                               data : { 'user' : $('[name=user]').val(), 'pass' : $('[name=pass]').val() },
                               dataType: 'jsonp',
                               jsonp: 'jsoncallback',

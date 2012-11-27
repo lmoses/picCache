@@ -30,24 +30,26 @@ function uploadtoserver(newimageData,newcomment)
   //console.log("ImageData is:"+newimageData);
   //post the image data to php
   // check in php to make sure can post large string
-  $.post("http://192.168.10.105/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment },
-         function(data) {
-         console.log("Data Loaded: " + data);
-         });
-//  $.ajax({//.post?
-//         type:'POST',
-//         url: 'http://192.168.10.105/posty/index.php?at=ajax_uploadgame',
-//         data : { 'imageData' : imageData, 'comment' : comment },
-//         dataType: 'jsonp',
-//         jsonp: 'imgupload',// check on how this will call a success/error
-//         timeout: 15000,
-//         success: function(data, status){
-//          console.log("in uploadtoserver(), comment is "+ data.comment);
-//         },
-//         error: function(){
-//         console.log("There was an error loading the data.");
-//         }
+//  $.post("http://192.168.10.105/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment },
+//         function(data,status) {
+//       //  var x = eval('(' + data + ')');
+//         if(data.user!="")
+//         console.log("Data Loaded: " + data[6]);
 //         });
+  $.ajax({//.post?
+         type: "POST",
+         url: 'http://192.168.10.105/posty/index.php?at=ajax_uploadgame',
+         data : { 'imageData' : newimageData, 'comment' : newcomment },
+         dataType: 'jsonp',
+         jsonp: 'imgupload',// check on how this will call a success/error
+         timeout: 5000,
+         success: function(data, status){
+          console.log("in uploadtoserver(), comment is "+ data.comment);
+         },
+         error: function(){
+         console.log("There was an error loading the data.");
+         }
+         });
   
 }
 function onPhotoDataSuccess(imageData) {
