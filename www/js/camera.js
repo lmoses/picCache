@@ -23,24 +23,31 @@ function cameraReady() {
 
 // Called when a photo is successfully retrieved
 //
-function uploadtoserver(imageData,comment)
+function uploadtoserver(newimageData,newcomment)
 {
   //index.php?at=ajax_uploadgame
-  console.log("in upload, comment is: " + comment);
-  console.log("ImageData is:"+imageData);
-  $.ajax({
-         url: 'http://192.168.7.194/posty/testimage.php',
-         data : { 'imageData' : imageData, 'comment' : comment },
-         dataType: 'jsonp',
-         jsonp: 'imgupload',
-         timeout: 5000,
-         success: function(data, status){
-          console.log("in uploadtoserver(), comment is "+ data.comment);
-         },
-         error: function(){
-         console.log("There was an error loading the data.but comment is: " + data.comment);
-         }
+  console.log("in upload, comment is: " + newcomment);
+  //console.log("ImageData is:"+newimageData);
+  //post the image data to php
+  // check in php to make sure can post large string
+  $.post("http://192.168.10.105/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment },
+         function(data) {
+         console.log("Data Loaded: " + data);
          });
+//  $.ajax({//.post?
+//         type:'POST',
+//         url: 'http://192.168.10.105/posty/index.php?at=ajax_uploadgame',
+//         data : { 'imageData' : imageData, 'comment' : comment },
+//         dataType: 'jsonp',
+//         jsonp: 'imgupload',// check on how this will call a success/error
+//         timeout: 15000,
+//         success: function(data, status){
+//          console.log("in uploadtoserver(), comment is "+ data.comment);
+//         },
+//         error: function(){
+//         console.log("There was an error loading the data.");
+//         }
+//         });
   
 }
 function onPhotoDataSuccess(imageData) {
@@ -98,7 +105,7 @@ function capturePhoto() {
 function capturePhotoEdit() {
   console.log("take and edit a picture");
   // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-  navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
+  navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 2, allowEdit: true,
                               destinationType: destinationType.DATA_URL });
 }
 

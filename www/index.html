@@ -81,7 +81,7 @@
               $('#login').submit(function(me) {
                           me.preventDefault();
                           $.ajax({
-                              url: 'http://www.lmoses.com/posty/index.php?at=ajax_login',
+                              url: 'http://192.168.10.105/posty/index.php?at=ajax_login',
                               data : { 'user' : $('[name=user]').val(), 'pass' : $('[name=pass]').val() },
                               dataType: 'jsonp',
                               jsonp: 'jsoncallback',
@@ -150,6 +150,7 @@
           <label for="user">Password:</label><input type="password" name="pass" />
           <input type="submit" value="Submit"/>
         </form>
+        <a href="#camera" data-theme="a" data-role="button" > cheat</a>
       </div>
       <div data-role="footer">
         <p> You must log in to continue</p>
@@ -189,9 +190,10 @@
       <div data-role="content">
         
         <button onclick="capturePhoto();">Capture Photo</button>
-        <button onclick="uploadtoserver('aaa', 'aaaaa');">uploadtoserver</button>
-        <!--
+        <button onclick="uploadtoserver('AAQSkZJRgABAQAAAQABAAD4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAACgKADAAQAAAABAAACgAAAAAD', 'aaaaa');">uploadtoserver</button>
+        
          <button onclick="capturePhotoEdit();">Capture Editable Photo</button>
+     <!--    
          <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button>
          <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button>
          -->
