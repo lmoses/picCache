@@ -30,7 +30,7 @@ function uploadtoserver(newimageData,newcomment)
   //console.log("ImageData is:"+newimageData);
   //post the image data to php
   // check in php to make sure can post large string
-  $.post("http://192.168.10.105/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment },
+  $.post("http://www.lmoses.com/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment },
          function(data,status) {
        //  var x = eval('(' + data + ')');
          if(data.user!="")
