@@ -36,6 +36,7 @@
           <script type="text/javascript" charset="utf-8" src="cordova-1.8.1.js"></script>
           <script src="js/jquery-1.7.2.min.js"></script>
           <script src="js/jquery.mobile-1.2.0.min.js"></script>
+          <script src="js/main.js"></script>
           <script src="js/camera.js"></script>
           <script type="text/javascript">
             
@@ -91,6 +92,8 @@
                                  {
                                     $.mobile.path.set("#home");
                                     console.log("show test");
+                                 user=data;
+                                 console.log(user.id);
                                  }
                               console.log(data.user + " " + data.id);
                               },
@@ -150,7 +153,6 @@
           <label for="user">Password:</label><input type="password" name="pass" />
           <input type="submit" value="Submit"/>
         </form>
-        <a href="#camera" data-theme="a" data-role="button" > cheat</a>
       </div>
       <div data-role="footer">
         <p> You must log in to continue</p>
@@ -190,10 +192,10 @@
       <div data-role="content">
         
         <button onclick="capturePhoto();">Capture Photo</button>
-        <button onclick="uploadtoserver('AAQSkZJRgABAQAAAQABAAD4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAACgKADAAQAAAABAAACgAAAAAD', 'aaaaa');">uploadtoserver</button>
+         <!--    <button onclick="uploadtoserver('AAQSkZJRgABAQAAAQABAAD4QBYRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAACgKADAAQAAAABAAACgAAAAAD', 'aaaaa');">uploadtoserver</button>
         
          <button onclick="capturePhotoEdit();">Capture Editable Photo</button>
-     <!--    
+    
          <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button>
          <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button>
          -->
@@ -222,7 +224,7 @@
         <h1>Friends</h1>
       </div>
       <div data-role="content">
-        
+        <button onclick="showgames()">Refresh</button>
         
         <div id="result">
           

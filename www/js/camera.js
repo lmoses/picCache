@@ -30,12 +30,24 @@ function uploadtoserver(newimageData,newcomment)
   //console.log("ImageData is:"+newimageData);
   //post the image data to php
   // check in php to make sure can post large string
-  $.post("http://192.168.7.194/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment },
-         function(data,status) {
-       //  var x = eval('(' + data + ')');
-         if(data.user!="")
-         console.log("Data Loaded: " + data.notes);
-         },'json');
+//  $.post("http://192.168.7.194/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment },
+//         function(data,status) {
+//       //  var x = eval('(' + data + ')');
+//         if(data.user!="")
+//         console.log("Data Loaded: " + data.notes);
+//         },'json');
+  console.log("uid is "+user.id);
+  var jqxhr = $.post("http://www.lmoses.com/posty/index.php?at=ajax_uploadgame", { imageData: newimageData, comment: newcomment, uid: user.id},
+                     function(data,status) {
+                     //  var x = eval('(' + data + ')');
+                     //if(data.user!="")
+                     console.log("Data Loaded: " + data.notes);
+                     showgames();                     
+                     },'json')
+                        .success(function() { console.log("second success"); })
+                        .error(function() { console.log("error"); })
+                        .complete(function() { console.log("complete"); });
+  
 //  $.ajax({//.post?
 //         type: "POST",
 //         url: 'http://192.168.10.105/posty/index.php?at=ajax_uploadgame',
