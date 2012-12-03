@@ -80,7 +80,7 @@ function onPhotoDataSuccess(imageData) {
   // The inline CSS rules are used to resize the image
   //
   smallImage.src =  "data:image/jpeg;base64," + imageData;
-  var comment= prompt("Please enter a text hint", "hint");
+  var comment= prompt("Please enter a text hint");
   uploadtoserver(imageData,comment);
 //  console.log(imageData);
 }
