@@ -70,16 +70,16 @@ function onPhotoDataSuccess(imageData) {
   
   // Get image handle
   //
-  var smallImage = document.getElementById('smallImage');
+  //var smallImage = document.getElementById('smallImage');
   
   // Unhide image elements
   //
-  smallImage.style.display = 'block';
+ // smallImage.style.display = 'block';
   
   // Show the captured photo
   // The inline CSS rules are used to resize the image
   //
-  smallImage.src =  "data:image/jpeg;base64," + imageData;
+ // smallImage.src =  "data:image/jpeg;base64," + imageData;
   var comment= prompt("Please enter a text hint");
   uploadtoserver(imageData,comment);
 //  console.log(imageData);

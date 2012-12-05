@@ -90,10 +90,10 @@
                               success: function(data, status){
                                  if(data.user!='nobody')
                                  {
-                                    $.mobile.path.set("#home");
                                     console.log("show test");
-                                 user=data;
-                                 console.log(user.id);
+                                    user=data;
+                                    console.log(user.id);
+                                    $.mobile.path.set("#home");
                                  }
                               console.log(data.user + " " + data.id);
                               },
@@ -110,7 +110,7 @@
               //hideTest();
               submitWatch();
               cameraReady();
-              
+              //tableWatch();
             }
             
             
@@ -149,9 +149,29 @@
       
       <div data-role="content">
         <form id="login">
-          <label for="user">User name:</label><input type="text" name="user" />
-          <label for="user">Password:</label><input type="password" name="pass" />
-          <input type="submit" value="Submit"/>
+          <table>
+            <tr>
+              <td>
+                <label for="user">User name:</label>
+              </td>
+              <td>
+                <input type="text" name="user" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="user">Password:</label>
+              </td>
+              <td>
+                <input type="password" name="pass" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                <input type="submit" value="Submit"/>
+              </td>
+            </tr>
+          </table>
         </form>
       </div>
       <div data-role="footer">
@@ -171,7 +191,8 @@
       
       <div data-role="content">
         <a href="#camera" data-theme="a" data-role="button" > New Game</a>
-        <a href="#continuegame" data-role="button">Continue Game</a>
+        <a onclick="showgames()" data-role="button">Continue Game</a>
+        <a onclick="getpos()" data-role="button">Get Position</a>
       </div><!-- /content -->
       
       <!--footer
@@ -201,7 +222,7 @@
          -->
         <img style="display:none;width:60px;height:60px;" id="smallImage" alt="image" src="default.png" />
         <img style="display:none;" id="largeImage" alt="image" src="default.png" />
-        <p>Camera Page content goes here.</p>
+        <p>To Start a new game press the Capture Photo button and take a picture, then a box will pop up for you to enter a text hint.</p>
       </div><!-- /content -->
       
       <div data-role="footer">
@@ -224,11 +245,10 @@
         <h1>Friends</h1>
       </div>
       <div data-role="content">
-        <button onclick="showgames()">Refresh</button>
-        
         <div id="result">
-          
         </div>
+        
+        <button onclick="showgames()">Refresh</button>
       </div>
       <div data-role="footer">
         <div data-role="navbar" class="ui-navbar" role="navigation">
@@ -246,6 +266,36 @@
     </div>
     
     <!--/page continue game-->
+    
+    <div data-role="page" id="compare" data-theme="a">
+      <div data-role="header">
+        <h2>Compare Pics</h2>
+      </div><!-- /header -->
+      
+      <div data-role="content">
+        <div id="gamephoto">
+        </div><!-- /gamephoto>-->
+        
+        <div id="guessphoto">
+        </div><!-- /guessphoto -->
+        <button id="win" onclick="winner()">Declare Winner</button>
+        <button id="lose">Loser!</button>
+      </div> <!-- /content> -->
+      
+      <div data-role="footer">
+        <div data-role="navbar" class="ui-navbar" role="navigation">
+          <ul class="ui-grid-a">
+            <li class="ui-block-a">
+              <a href="#home" data-role="button" data-theme="a"><span class="ui-btn-text">Home</span></a>
+            </li>
+            <li class="ui-block-b">
+              <a href="#camera" data-role="button" data-theme="a"><span class="ui-btn-text">Camera</span></a>
+            </li>
+          </ul>
+        </div>
+      </div> <!-- /footer -->
+      
+    </div> <!-- /compare> -->
     
   </body>
 </html>
