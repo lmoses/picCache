@@ -2,9 +2,9 @@ body
 {
   background-color:#232323;
   }
-#result
+#refreshButton
 {
-padding-bottom:25px;
+padding-top:25px;
 }
 [data-role=page]{
   height: 100% !important; 

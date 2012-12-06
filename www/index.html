@@ -34,6 +34,7 @@
            -->
           <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
           <script type="text/javascript" charset="utf-8" src="cordova-1.8.1.js"></script>
+     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
           <script src="js/jquery-1.7.2.min.js"></script>
           <script src="js/jquery.mobile-1.2.0.min.js"></script>
           <script src="js/main.js"></script>
@@ -90,11 +91,11 @@
                               success: function(data, status){
                                  if(data.user!='nobody')
                                  {
-                                    console.log("show test");
+//                                    console.log("show test RIGHT NO");
                                     user=data;
                                     console.log(user.id);
                                     $.mobile.path.set("#home");
-                                 }
+                                  }
                               console.log(data.user + " " + data.id);
                               },
                               error: function(){
@@ -102,6 +103,50 @@
                             }
                           });
                       });
+              
+              $('#register').submit(function(em) {
+                                    em.preventDefault();
+                                    console.log($('input[name=ruser]').val() + "  " + $('input[name=rpass]').val()+ "  " + $('input[name=rconfirm_pass]').val());
+                                    
+                                    if($('input[name=rpass]').val()==$('input[name=rconfirm_pass]').val())
+                                           {
+                                            var jqxhr = $.post("http://www.lmoses.com/posty/index.php?at=ajax_register", { 'user' : $('[name=ruser]').val(), 'pass' : $('[name=rpass]').val(),'verify' : $('[name=rconfirm_pass]').val() },
+                                                       function(data,status) {
+                                                               console.log("Data Loaded: " + data.note);
+                                                       },'json')
+                                                        .success(function() { console.log("second success"); })
+                                                        .error(function() { console.log("error"); })
+                                                        .complete(function() { console.log("complete"); });
+                                    
+//                                    $.ajax({
+//                                           url: 'http://www.lmoses.com/posty/index.php?at=ajax_register',
+//                                           data : { 'user' : $('[name=ruser]').val(), 'pass' : $('[name=rpass]').val() },
+//                                           dataType: 'jsonp',
+//                                           jsonp: 'regcallback',
+//                                           timeout: 5000,
+//                                           success: function(data, status){
+//                                           console.log(data.note);
+////                                           if(data.user!='nobody')
+////                                           {
+////                                           
+////                                           user=data;
+////                                           console.log(user.id);
+////                                           alert("Registration Completed");
+////                                           $.mobile.path.set("#home");
+////                                           }
+////                                                                                     
+////                                           console.log(data.user + " " + data.id);
+//                                           },
+//                                           error: function(){
+//                                           console.log('There was an error creating the user');
+//                                           }
+//                                           });
+                                    }
+                                    else
+                                    {
+                                    alert("Passwords don't match!");
+                                    }
+                                    });
             }
             function onDeviceReady()
             {
@@ -139,6 +184,7 @@
      
      
      -->
+    
     <!--login page-->
     
     <div data-role="page" id="loginpage" data-theme="a">
@@ -173,17 +219,60 @@
             </tr>
           </table>
         </form>
+<!--        <a href="#register" data-role="button" data-theme="a">Register New User</a> -->
       </div>
       <div data-role="footer">
         <p> You must log in to continue</p>
       </div>
       
     </div>
-    
-    
     <!--/login page-->
     
-    <!-- page-->
+    <!-- register page -->
+    <div id="register" data-role="page" data-theme="a">
+      <div data-role="header">
+        <h1>Register New User</h1>
+      </div>
+      <div data-role="content">
+        <form id="register">
+          
+          <table>
+            <tr>
+              <td>
+                <label for="user">User name:</label>
+              </td>
+              <td>
+                <input type="text" name="ruser" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="user">Password:</label>
+              </td>
+              <td>
+                <input type="password" name="rpass" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="user">Confirm:</label>
+              </td>
+              <td>
+                <input type="password" name="rconfirm_pass" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan=2>
+                <input type="submit" value="Submit"/>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+      <!-- /register page -->
+    
+    <!-- home page-->
     <div data-role="page" id="home" data-theme="a">
       <div data-role="header">
         <h1>CacheDemPics</h1>
@@ -192,7 +281,7 @@
       <div data-role="content">
         <a href="#camera" data-theme="a" data-role="button" > New Game</a>
         <a onclick="showgames()" data-role="button">Continue Game</a>
-        <a onclick="getpos()" data-role="button">Get Position</a>
+<!--        <a onclick="getpos()" data-role="button">Get Position</a>-->
       </div><!-- /content -->
       
       <!--footer
@@ -248,7 +337,8 @@
         <div id="result">
         </div>
         
-        <button onclick="showgames()">Refresh</button>
+        <button onclick="showgames()"id="refreshButton">Refresh</button>
+        </br>
       </div>
       <div data-role="footer">
         <div data-role="navbar" class="ui-navbar" role="navigation">
