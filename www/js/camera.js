@@ -110,7 +110,7 @@ function onPhotoURISuccess(imageURI) {
 function capturePhoto() {
   console.log("take a picture");
   // Take picture using device camera and retrieve image as base64-encoded string
-  navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 2,
+  navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20,
                               destinationType: destinationType.DATA_URL });
 }
 

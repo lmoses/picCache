@@ -113,6 +113,10 @@
                                             var jqxhr = $.post("http://www.lmoses.com/posty/index.php?at=ajax_register", { 'user' : $('[name=ruser]').val(), 'pass' : $('[name=rpass]').val(),'verify' : $('[name=rconfirm_pass]').val() },
                                                        function(data,status) {
                                                                console.log("Data Loaded: " + data.note);
+                                                               if(data.flag) alert("user created");
+                                                               else
+                                                               alert("user not created");
+                                                               $.mobile.path.set('#login');
                                                        },'json')
                                                         .success(function() { console.log("second success"); })
                                                         .error(function() { console.log("error"); })
@@ -219,7 +223,7 @@
             </tr>
           </table>
         </form>
-<!--        <a href="#register" data-role="button" data-theme="a">Register New User</a> -->
+        <a href="#register" data-role="button" data-theme="a">Register New User</a> 
       </div>
       <div data-role="footer">
         <p> You must log in to continue</p>
@@ -268,6 +272,10 @@
             </tr>
           </table>
         </form>
+        <p>
+        Usernames must be small letters a-z and numbers from 3-20 characters.
+        </p>
+        <a href="#loginpage" data-role="button" data-theme="a">Back to login</a>
       </div>
     </div>
       <!-- /register page -->
@@ -368,8 +376,16 @@
         
         <div id="guessphoto">
         </div><!-- /guessphoto -->
-        <button id="win" onclick="winner()">Declare Winner</button>
-        <button id="lose">Loser!</button>
+        <table>
+          <tr>
+            <td>
+              <button id="win" onclick="winner()">Yes</button>
+            </td>
+            <td>
+              <button id="lose"onclick="loser()">No</button>
+            </td>
+          </tr>
+        </table>
       </div> <!-- /content> -->
       
       <div data-role="footer">

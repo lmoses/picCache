@@ -7,7 +7,7 @@ function tableWatch()
                      //var picname = $(this).attr(picname);
                      var picname = $(this).attr("data-pic");
 //                     console.log('clicked '+ picname);
-                     $('#gamephoto').html("<img src='http://www.lmoses.com/posty/upload/"+picname+"' height=150 width=300/>");
+                     $('#gamephoto').html("<img src='http://www.lmoses.com/posty/upload/"+picname+"' height=300 width=300/>");
                      $.mobile.path.set("#compare");
                      
                 });
@@ -42,8 +42,16 @@ function showgames()
 
 // onError Callback receives a PositionError object
 //
-
-
+function winner()
+{
+  alert("Nice try loser...");
+  loser();
+}
+function loser()
+{
+  alert("you have lost");
+  $.mobile.path.set('#home');
+}
 function getpos(){
   var lat=0, long=0;
   navigator.geolocation.getCurrentPosition(function(position) {
