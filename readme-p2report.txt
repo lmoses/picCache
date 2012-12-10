@@ -7,12 +7,13 @@ registered friend’s games that are available.
 The application uses a web-server based SQL storage for user and game image data. Some of the
 API’s and services we utilize for the game are:
 
-Phonegap
-Php
-Jquery
-Jquery Mobile
-Ajax
-Phonegap camera API
+Phonegap- allows for writing a html document that will be displayed by a device
+Php- server side scripting to allow database connection and file handling
+HTML5- what the majority of the pages are written in
+Jquery/Jquery Mobile- allow paging and the fancy effects that are available
+Ajax- to communicate with the php
+Phonegap camera API- from phonegap to take pictures
+Mysql- Database to store everything
 
 
 Upon installing the application, a login screen will display first, with an add user button for
@@ -39,10 +40,13 @@ Phonegap Camera API, time spent 1-2 hours Luke Moses
 
 Photo Upload ~8 hours(many moons) Luke Moses
 
-To Be Done:
+User Addition 4 hours Luke Moses
 
-Geolocation comparison and win/lose notifications
-user addition, database pulls
+Database Pulls(showgames) 5 hours Luke Moses
+
+Documentation 8 hours Luke Moses/Cameron Mills
+
+
 
 Difficulties: Facebook login scrapped due to complexity, some of the original mockup
 screens were omitted or re-worked for easier coding/time constraint consideration.(text hint,
